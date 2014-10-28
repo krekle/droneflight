@@ -1,6 +1,7 @@
 function send(dir) {
     $.ajax({
         url: '/' + dir,
+cache: false
     });
 }
 
