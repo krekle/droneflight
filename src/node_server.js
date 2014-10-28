@@ -12,10 +12,6 @@ app.get('/', function(request, response){
 app.get('/takeoff', function(request, response){
     console.log("Taking off...");
     client.takeoff();
-    client.after(5000, function(){
-        console.log("Landing...");
-        this.land();
-    });
     response.send("Done!");
 });
 
@@ -29,6 +25,18 @@ app.get('/takeoffAndSpin', function(request, response){
         console.log("Stopping activities and landing...");
         this.stop();
         this.land();
+    });
+    response.send("Done!");
+});
+
+app.get('/takeoff', function(request, response){
+    console.log("Taking off...");
+    client.takeoff();
+    client.after(100, function(){
+        console.log("Spinning clockwise...");
+        this.takeoff();
+    }).after(1000, function(){
+	console.log("Stopping activities and landing...");
     });
     response.send("Done!");
 });
