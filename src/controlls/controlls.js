@@ -5,16 +5,21 @@ function send(dir) {
 }
 
 var keys = {
-    87: 'forward',
-    83: 'backward',
+    87: 'front',
+    83: 'back',
     65: 'left',
     68: 'right',
     38: 'up',
     40: 'down',
+    81: 'turnleft',
+    69: 'turnright',
+    84: 'takeoff',
+    76: 'land',
 }
 
 $(document).ready(function () {
     $(document).on('keyup', function (e) {
+        console.log(e.keyCode);
         if (e.keyCode in keys) {
             var cmd = keys[e.keyCode];
             $('#history').html('<p>' + cmd + '</p>' + $('#history').html());
