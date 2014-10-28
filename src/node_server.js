@@ -18,62 +18,58 @@ app.get('/takeoff', function(request, response){
     response.send("Done!");
 });
 
-app.get('/takeoffAndSpin', function(request, response){
-    console.log("Taking off...");
-    client.takeoff();
-    client.after(4000, function(){
-        console.log("Spinning clockwise...");
-        this.clockwise(0.5);
-    }).after(1000, function(){
+app.get('/turnleft', function(request, response){
+    console.log("Turning left...");
+    client.after(100, function(){
+        console.log("Turning now...");
+        this.counterClockwise(0.5);
+    }).after(100, function(){
         console.log("Stopping activities and landing...");
-        this.stop();
-        this.land();
+	this.stop();
     });
     response.send("Done!");
 });
 
-app.get('/takeoff', function(request, response){
-    console.log("Taking off...");
-    client.takeoff();
+app.get('/turnright', function(request, response){
+    console.log("Turning right...");
     client.after(100, function(){
-        console.log("Spinning clockwise...");
-        this.takeoff();
-    }).after(1000, function(){
-	console.log("Stopping activities and landing...");
+        console.log("Turning now...");
+        this.clockwise(0.5);
+    }).after(100, function(){
+        console.log("Stopping activities and landing...");
+	this.stop();
     });
     response.send("Done!");
 });
 
 app.get('/left', function(request, response){
-    console.log("Turning left...");
-    client.after(200, function(){
+    console.log("Turning right...");
+    client.after(100, function(){
         console.log("Turning now...");
-        this.counterClockwise(0.5);
-    }).after(1000, function(){
-        console.log("Stopping activities and landing...");
-	this.stop();
+        this.left(0.5);
+    }).after(100, function(){
+		this.stop();
     });
     response.send("Done!");
 });
 
 app.get('/right', function(request, response){
     console.log("Turning right...");
-    client.after(200, function(){
+    client.after(100, function(){
         console.log("Turning now...");
-        this.clockwise(0.5);
-    }).after(1000, function(){
-        console.log("Stopping activities and landing...");
-	this.stop();
+        this.right(0.5);
+    }).after(100, function(){
+		this.stop();
     });
     response.send("Done!");
 });
 
 app.get('/up', function(request, response){
     console.log("Going up...");
-    client.after(200, function(){
+    client.after(100, function(){
         console.log("up now...");
         this.up(0.5);
-    }).after(1000, function(){
+    }).after(100, function(){
 	this.stop();
     });
     response.send("Done!");
@@ -81,10 +77,10 @@ app.get('/up', function(request, response){
 
 app.get('/down', function(request, response){
     console.log("Going down...");
-    client.after(200, function(){
+    client.after(100, function(){
         console.log("down now...");
         this.down(0.5);
-    }).after(1000, function(){
+    }).after(100, function(){
 	this.stop();
     });
     response.send("Done!");
@@ -109,35 +105,6 @@ app.get('/back', function(request, response){
     }).after(100, function(){
 	this.stop();
     });
-    response.send("Done!");
-});
-
-app.get('/takeoffAndFly', function(request, response){
-    var coordinates = request.query.c;
-    if(coordinates != undefined) {
-        var controller = new autonomy.Controller(client, {debug: false});
-        console.log("Taking off...");
-        client.takeoff();
-        client.after(8000, function() {
-            var xy;
-            if (typeof coordinates === 'object') {
-                for (var i = 0; i < coordinates.length; i++) {
-                    var coordinate = coordinates[i];
-                    xy = coordinate.split(",");
-                    console.log("Flying to x=" + xy[0] + " " + "y=" + xy[1]);
-                    controller.go({x: xy[0], y: xy[1]});
-                }
-            } else {
-                xy = coordinates.split(",");
-                console.log("Flying to x=" + xy[0] + " " + "y=" + xy[1]);
-                controller.go({x: xy[0], y: xy[1]});
-            }
-        })
-        .after(1000, function(){
-            console.log("Landing...");
-            this.land();
-        });
-    }
     response.send("Done!");
 });
 
