@@ -29,6 +29,29 @@ app.get('/turnleft', function(request, response){
     response.send("Done!");
 });
 
+app.get('/flipleft', function(request, response){
+    console.log("Turning left...");
+    client.after(10, function(){
+        console.log("Turning now...");
+        this.animate('flipLeft', 1000);
+    }).after(500, function(){
+	this.stop();
+    });
+    response.send("Done!");
+});
+
+app.get('/flipright', function(request, response){
+    console.log("Turning left...");
+    client.after(10, function(){
+        console.log("Turning now...");
+        this.animate('flipRight', 1000);
+    }).after(500, function(){
+	this.stop();
+    });
+    response.send("Done!");
+});
+
+
 app.get('/turnright', function(request, response){
     console.log("Turning right...");
     client.after(10, function(){
