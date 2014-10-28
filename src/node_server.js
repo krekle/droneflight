@@ -20,11 +20,10 @@ app.get('/takeoff', function(request, response){
 
 app.get('/turnleft', function(request, response){
     console.log("Turning left...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("Turning now...");
-        this.counterClockwise(0.5);
-    }).after(100, function(){
-        console.log("Stopping activities and landing...");
+        this.counterClockwise(1);
+    }).after(500, function(){
 	this.stop();
     });
     response.send("Done!");
@@ -32,11 +31,10 @@ app.get('/turnleft', function(request, response){
 
 app.get('/turnright', function(request, response){
     console.log("Turning right...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("Turning now...");
-        this.clockwise(0.5);
-    }).after(100, function(){
-        console.log("Stopping activities and landing...");
+        this.clockwise(1);
+    }).after(500, function(){
 	this.stop();
     });
     response.send("Done!");
@@ -44,10 +42,10 @@ app.get('/turnright', function(request, response){
 
 app.get('/left', function(request, response){
     console.log("Turning right...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("Turning now...");
-        this.left(0.5);
-    }).after(100, function(){
+        this.left(1);
+    }).after(500, function(){
 		this.stop();
     });
     response.send("Done!");
@@ -55,10 +53,10 @@ app.get('/left', function(request, response){
 
 app.get('/right', function(request, response){
     console.log("Turning right...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("Turning now...");
-        this.right(0.5);
-    }).after(100, function(){
+        this.right(1);
+    }).after(500, function(){
 		this.stop();
     });
     response.send("Done!");
@@ -66,10 +64,10 @@ app.get('/right', function(request, response){
 
 app.get('/up', function(request, response){
     console.log("Going up...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("up now...");
-        this.up(0.5);
-    }).after(100, function(){
+        this.up(1);
+    }).after(500, function(){
 	this.stop();
     });
     response.send("Done!");
@@ -77,10 +75,10 @@ app.get('/up', function(request, response){
 
 app.get('/down', function(request, response){
     console.log("Going down...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("down now...");
-        this.down(0.5);
-    }).after(100, function(){
+        this.down(1);
+    }).after(500, function(){
 	this.stop();
     });
     response.send("Done!");
@@ -88,10 +86,10 @@ app.get('/down', function(request, response){
 
 app.get('/front', function(request, response){
     console.log("Going forward...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("forward now...");
-        this.front(0.5);
-    }).after(100, function(){
+        this.front(1);
+    }).after(500, function(){
 	this.stop();
     });
     response.send("Done!");
@@ -99,10 +97,10 @@ app.get('/front', function(request, response){
 
 app.get('/back', function(request, response){
     console.log("Going back...");
-    client.after(100, function(){
+    client.after(10, function(){
         console.log("back now...");
         this.back(0.5);
-    }).after(100, function(){
+    }).after(500, function(){
 	this.stop();
     });
     response.send("Done!");
