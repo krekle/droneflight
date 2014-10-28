@@ -1,12 +1,15 @@
 var express = require('express');
+var fs = require('fs');
 var app = express();
 var port = 1337;
 var arDrone = require('ar-drone');
 var client  = arDrone.createClient();
 var autonomy = require('ardrone-autonomy');
 
+app.use('/controlls', express.static(__dirname + '/controlls/'));
+
 app.get('/', function(request, response){
-    response.send("Welcome to my Parrot AR node server!");
+    response.send("Hello, go to /controlls to controll!");
 });
 
 app.get('/takeoff', function(request, response){
